@@ -1,0 +1,45 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    MAKEFILE                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jschuster <jschuster@student.42.fr>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/25 21:19:01 by jschuster         #+#    #+#              #
+#    Updated: 2025/03/26 01:39:47 by jschuster        ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# Variablen
+NAME = libft.a                  # Name der Bibliothek
+CC = cc                         # Compiler
+CFLAGS = -Wall -Wextra -Werror  # Compiler-Flags
+SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
+       ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
+       ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \
+       ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
+       ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c \
+       ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
+       ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
+
+OBJS = $(SRCS:.c=.o)            # Objektdateien (.o aus .c erstellen)
+
+# Regeln
+all: $(NAME)                    # Standardziel: Bibliothek erstellen
+
+$(NAME): $(OBJS)
+        ar rcs $(NAME) $(OBJS)  # Bibliothek aus Objektdateien erstellen
+
+clean:
+        rm -f $(OBJS)            # Objektdateien entfernen
+
+fclean: clean
+        rm -f $(NAME)            # Bibliothek entfernen
+
+re: fclean all                  # Alles neu erstellen
+
+bonus:                          # Optional, falls Bonus-Funktionen existieren
+        make SRCS="ft_bonus1.c ft_bonus2.c"
+
+#include <stdio.h>
+#include "libft.h"
